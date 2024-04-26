@@ -32,22 +32,20 @@
 // };
 
 let tribonacci = function (n) {
-    if(n < 2) return n;
-    if(n == 2) return 1;
-    let t = 0;
-    let t1 = 0;
-    let t2 = 1;
-    let t3 = 1;
-    for (let i = 3; i < n+1 ; i++) {
-        t = t1 + t2 + t3;
-        t1 = t2;
-        t2 = t3;
-        t3 = t;
+    let tribo = [0,1,1],sum=0;
+    if(n < 3){
+        return tribo[n]
     }
-    return t; 
+    for (let i = 3; i < n+1 ; i++) {
+        sum = tribo.reduce(((acc,cur)=>{ return acc+cur}))
+        tribo.shift();
+        tribo.push(sum);
+    }
+    return sum;
+    
 };
 
 
 
-console.log(tribonacci(0));
+console.log(tribonacci(5));
 
